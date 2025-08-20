@@ -1,0 +1,10 @@
+fastapi==0.115.13
+httpx==0.28.1
+numpy
+SQLAlchemy==2.0.41
+psycopg2
+pandas
+uvicorn
+joblib
+scikit-learn
+python-multipart
