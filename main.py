@@ -1,4 +1,3 @@
-# 檔案: mainV2.py
 # 職責: 作為 API 的入口點，接收請求並完全轉交給服務層處理。
 
 import logging
@@ -31,16 +30,25 @@ logger = logging.getLogger(__name__)
 
 app = FastAPI()
 
-# CORS 設置
+# --- CORS 設置更新 ---
+# 為了提高安全性與瀏覽器相容性，我們將允許所有來源 ("*")
+# 改為明確指定您前端網站的網址。
+origins = [
+    "https://baseball-0623-frontend-c8gx.onrender.com",  # 您在 Render 上的前端網址
+    "http://localhost",                  # 為了方便您未來在本機電腦上開發測試
+    "http://localhost:3000",
+    "http://localhost:8080",
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=origins,       # 【修改點】使用上面定義的 origins 列表
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# --- API 路由 ---
+# --- API 路由 (您的既有程式碼維持不變) ---
 
 @app.post("/analyze-pitch/")
 async def analyze_pitch(
